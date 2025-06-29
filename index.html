@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sevil & Cemal - Düğün Geri Sayım</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.imgur.com/esxG4bA.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      padding: 100px 20px 20px;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    .heart {
+      font-size: 3rem;
+      color: red;
+      animation: pulse 1.5s infinite;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px 30px;
+      border-radius: 15px;
+    }
+
+    .footer-message {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      z-index: 3;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-style: italic;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .footer-message-right {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      z-index: 3;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-style: italic;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      .countdown {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+      }
+      .footer-message,
+      .footer-message-right {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="content">
+    <div class="heart">❤️</div>
+    <h1>Sevil & Cemal</h1>
+    <h2>Saf ve tutkuyla dolu aşkımızı taçlandıracağımız güne kalan süre: </h2>
+    <div class="countdown" id="countdown">Yükleniyor...</div>
+  </div>
+
+  <!-- Alt mesajlar -->
+  <div class="footer-message">Bir ömür seninle, aşkla, tutkuyla...</div>
+  <div class="footer-message-right">Hazırlayan: Seni her zaman sevecek Cemalin ❤️</div>
+
+  <script>
+    const weddingDate = new Date(2025, 9, 5, 0, 0, 0).getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "Düğünümüz gerçekleşti!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
