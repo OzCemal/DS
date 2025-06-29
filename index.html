@@ -34,7 +34,7 @@
       align-items: center;
       text-align: center;
       height: 100vh;
-      padding: 100px 20px 20px;
+      padding: 100px 20px 80px; /* Alt kısım için daha fazla boşluk */
       color: white;
       text-shadow: 1px 1px 4px black;
     }
@@ -64,25 +64,19 @@
       border-radius: 15px;
     }
 
-    .footer-message {
+    .footer-container {
       position: absolute;
       bottom: 10px;
-      left: 15px;
+      left: 0;
+      right: 0;
       z-index: 3;
-      background-color: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      padding: 8px 15px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-style: italic;
-      text-shadow: 1px 1px 3px black;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      flex-wrap: wrap; /* Küçük ekranlarda alt satıra geçmesi için */
     }
 
-    .footer-message-right {
-      position: absolute;
-      bottom: 10px;
-      right: 15px;
-      z-index: 3;
+    .footer-message {
       background-color: rgba(0, 0, 0, 0.4);
       color: #fff;
       padding: 8px 15px;
@@ -90,6 +84,8 @@
       font-size: 1rem;
       font-style: italic;
       text-shadow: 1px 1px 3px black;
+      margin-bottom: 5px; /* Mobilde aralık için */
+      max-width: 45%; /* Genişliği sınırla */
     }
 
     @keyframes pulse {
@@ -109,10 +105,15 @@
         font-size: 1.5rem;
         padding: 10px 20px;
       }
-      .footer-message,
-      .footer-message-right {
+      .footer-message {
         font-size: 0.9rem;
         padding: 6px 12px;
+        max-width: 100%; /* Mobilde tam genişlik */
+      }
+      .footer-container {
+        flex-direction: column; /* Mobilde alt alta */
+        align-items: center;
+        gap: 5px;
       }
     }
   </style>
@@ -127,9 +128,11 @@
     <div class="countdown" id="countdown">Yükleniyor...</div>
   </div>
 
-  <!-- Alt mesajlar -->
-  <div class="footer-message">Bir ömür seninle, aşkla, tutkuyla...</div>
-  <div class="footer-message-right">Hazırlayan: Seni her zaman sevecek Cemalin ❤️</div>
+  <!-- Alt mesajlar için yeni container -->
+  <div class="footer-container">
+    <div class="footer-message">Bir ömür seninle, aşkla, tutkuyla...</div>
+    <div class="footer-message">Hazırlayan: Seni her zaman sevecek Cemalin ❤️</div>
+  </div>
 
   <script>
     const weddingDate = new Date(2025, 9, 5, 0, 0, 0).getTime();
