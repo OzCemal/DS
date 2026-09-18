@@ -1,0 +1,16 @@
+{
+  "name": "DS - Wedding Countdown (static site)",
+  "terminals": [
+    {
+      "name": "web",
+      "command": "python3 -m http.server 8080 --bind 0.0.0.0",
+      "description": "Serves the static site (index.html) at http://localhost:8080"
+    }
+  ],
+  "ports": [
+    {
+      "name": "web server",
+      "port": 8080
+    }
+  ]
+}
